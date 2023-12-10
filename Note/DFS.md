@@ -72,19 +72,22 @@ public class DFS {
 - 스택을 이용한 DFS
 
 ```java
-public static void dfs(final List<List<Integer>>graph,final int startNode){
-final Stack<Integer> stack=new Stack<>();
-        boolean[]visited=new boolean[graphSize];
+public class DFS {
+
+    public static void dfs(final List<List<Integer>> graph, final int startNode) {
+        final Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[graphSize];
 
         stack.push(startNode);
 
-        while(!stack.isEmpty()){
-final int node=stack.pop();
-        if(!visited[node]){
-        visited[node]=true;
-        stack.addAll(graph.get(node));
-        System.out.println(stack);  // 스택 내용 출력
+        while (!stack.isEmpty()) {
+            final int node = stack.pop();
+            if (!visited[node]) {
+                visited[node] = true;
+                stack.addAll(graph.get(node));
+                System.out.println(stack);  // 스택 내용 출력
+            }
         }
-        }
-        }
+    }
+}
 ```
