@@ -9,8 +9,6 @@ import java.util.PriorityQueue;
 public class BOJ_11000 {
 
     static long[][] lecture;
-    static long room = 0;
-    static long return_room = 0;
 
     public static void main(final String[] args) throws IOException {
         final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
