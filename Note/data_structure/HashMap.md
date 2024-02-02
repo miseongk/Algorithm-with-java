@@ -72,17 +72,20 @@ public class HashMapSort {
 map 전체를 순회하면서 key와 value가 필요한 경우 사용
 
 ```java
-public static void main(final String[]args){
-final Map<String, Integer> hashMap=new HashMap<>();
+public class HashMapMethod {
 
-        hashMap.put("B",1);
-        hashMap.put("C",3);
-        hashMap.put("A",2);
+    public static void main(final String[] args) {
+        final Map<String, Integer> hashMap = new HashMap<>();
 
-        for(final Entry<String, Integer> entry:hashMap.entrySet()){
-        System.out.print(entry.getKey()+"="+entry.getValue()+", "); // A=2, B=1, C=3
+        hashMap.put("B", 1);
+        hashMap.put("C", 3);
+        hashMap.put("A", 2);
+
+        for (final Entry<String, Integer> entry : hashMap.entrySet()) {
+            System.out.print(entry.getKey() + "=" + entry.getValue() + ", "); // A=2, B=1, C=3
         }
-        }
+    }
+}
 ```
 
 - 출력값이 순서를 보장하지 않음 (순서 보장하려면 `LinkedHashMap` 사용)
@@ -92,16 +95,19 @@ final Map<String, Integer> hashMap=new HashMap<>();
 key값이 필요한 경우 사용
 
 ```java
-public static void main(final String[]args){
-final Map<String, Integer> hashMap=new TreeMap<>();
+public class HashMapMethod {
 
-        hashMap.put("B",1);
-        hashMap.put("C",3);
-        hashMap.put("A",2);
+    public static void main(final String[] args) {
+        final Map<String, Integer> hashMap = new TreeMap<>();
 
-final Set<String> keySet=hashMap.keySet();
-        for(final String key:keySet){
-        System.out.print(key+"="+hashMap.get(key)+", "); // A=2, B=1, C=3 
+        hashMap.put("B", 1);
+        hashMap.put("C", 3);
+        hashMap.put("A", 2);
+
+        final Set<String> keySet = hashMap.keySet();
+        for (final String key : keySet) {
+            System.out.print(key + "=" + hashMap.get(key) + ", "); // A=2, B=1, C=3 
         }
-        }
+    }
+}
 ```
