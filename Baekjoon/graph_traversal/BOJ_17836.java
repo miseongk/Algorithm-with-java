@@ -9,10 +9,11 @@ import java.util.Queue;
 public class BOJ_17836 {
 
     static int[][] arr;
-    static int[][] visited;
+    static int[][][] visited;
     static int n;
     static int m;
     static int t;
+    static int result = (int) 1e9;
 
     public static void main(final String[] args) throws IOException {
         final BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -21,7 +22,7 @@ public class BOJ_17836 {
         m = Integer.parseInt(nmt[1]);
         t = Integer.parseInt(nmt[2]);
         arr = new int[n][m];
-        visited = new int[n][m];
+        visited = new int[n][m][2];
         for (int i = 0; i < n; i++) {
             final String[] input = br.readLine().split(" ");
             for (int j = 0; j < m; j++) {
@@ -29,8 +30,8 @@ public class BOJ_17836 {
             }
         }
         bfs();
-        if (visited[n - 1][m - 1] > 0 && visited[n - 1][m - 1] <= t) {
-            System.out.println(visited[n - 1][m - 1]);
+        if (result > 0 && result <= t) {
+            System.out.println(result);
         } else {
             System.out.println("Fail");
         }
@@ -47,6 +48,13 @@ public class BOJ_17836 {
             final int y = pos[1];
             final int gram = pos[2];
             if (x == n - 1 && y == m - 1) {
+                if (visited[x][y][0] == 0) {
+                    result = visited[x][y][1];
+                } else if (visited[x][y][1] == 0) {
+                    result = visited[x][y][0];
+                } else {
+                    result = Math.min(visited[x][y][0], visited[x][y][1]);
+                }
                 break;
             }
             for (int i = 0; i < 4; i++) {
@@ -55,21 +63,25 @@ public class BOJ_17836 {
                 if (nx < 0 || nx >= n || ny < 0 || ny >= m) {
                     continue;
                 }
-                if (visited[nx][ny] > 0 && gram == 0) {
+                if (visited[nx][ny][0] > 0 && gram == 0) {
                     continue;
                 }
-                if (arr[nx][ny] == 0) {
-                    queue.offer(new int[]{nx, ny, gram});
-                }
-                if (arr[nx][ny] == 1 && gram == 1) {
-                    queue.offer(new int[]{nx, ny, gram});
-                } else if (arr[nx][ny] == 1 && gram == 0) {
+                if (visited[nx][ny][1] > 0 && gram == 1) {
                     continue;
                 }
-                if (arr[nx][ny] == 2) {
-                    queue.offer(new int[]{nx, ny, 1});
+                if (gram == 1) {
+                    queue.offer(new int[]{nx, ny, gram});
+                    visited[nx][ny][1] = visited[x][y][1] + 1;
+                } else {
+                    if (arr[nx][ny] == 0) {
+                        queue.offer(new int[]{nx, ny, gram});
+                        visited[nx][ny][0] = visited[x][y][0] + 1;
+                    } else if (arr[nx][ny] == 2) {
+                        queue.offer(new int[]{nx, ny, 1});
+                        visited[nx][ny][1] = visited[x][y][0] + 1;
+                        visited[nx][ny][0] = visited[x][y][0] + 1;
+                    }
                 }
-                visited[nx][ny] = visited[x][y] + 1;
             }
         }
     }
