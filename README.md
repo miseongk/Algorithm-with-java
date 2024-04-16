@@ -7,6 +7,7 @@
 - [DFS](https://github.com/miseongk/Algorithm-with-java/blob/main/Note/DFS.md)
 - [BFS](https://github.com/miseongk/Algorithm-with-java/blob/main/Note/BFS.md)
 - [Dijkstra](https://github.com/miseongk/Algorithm-with-java/blob/main/Note/Dijkstra.md)
+- [QuickSort](https://github.com/miseongk/Algorithm-with-java/blob/main/Note/QuickSort.md)
 
 ### 자료구조
 
